@@ -175,7 +175,6 @@ class HomeScreen extends StatelessWidget {
             MenuTile(
                 title: 'Experiência Profissional', screen: ExperienciaScreen()),
             MenuTile(title: 'Competências', screen: CompetenciasScreen()),
-            MenuTile(title: 'Cursos & Certificações', screen: CursosScreen()),
             MenuTile(title: 'Contato', screen: ContatoScreen()),
           ],
         ),
@@ -320,7 +319,11 @@ class BaseScreen extends StatelessWidget {
   final String title;
   final String content;
 
-  const BaseScreen({super.key, required this.title, required this.content});
+  const BaseScreen({
+    super.key,
+    required this.title,
+    required this.content,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -335,32 +338,40 @@ class BaseScreen extends StatelessWidget {
               onTap: () => Navigator.pop(context),
               child: const Text(
                 '← Voltar',
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
               ),
             ),
             const SizedBox(height: 24),
-            InfoCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+            Expanded(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: InfoCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        content,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          height: 1.6,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 12),
-                  Text(
-                    content,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      height: 1.5,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],
@@ -419,7 +430,7 @@ class _DadosPessoaisScreenState extends State<DadosPessoaisScreen> {
                             ),
                             SizedBox(height: 12),
                             Text(
-                              '#NOME: Adriano Santos Pereira\n#ENDEREÇO: Rua Eunice Weaver 200, apt 512, Carlos Chagas\n#IDADE: 40 anos\n#ESTADO CIVIL: Solteiro',
+                              '#NOME:\nAdriano Santos Pereira\n#ENDEREÇO:\nRua Eunice Weaver 200, apt 812, Carlos Chagas\n#IDADE: 40 anos\n#ESTADO CIVIL:\nSolteiro\nFilhos: 2',
                               style: TextStyle(
                                 fontSize: 18,
                                 height: 1.5,
@@ -514,7 +525,7 @@ class PerfilScreen extends StatelessWidget {
     return const BaseScreen(
       title: 'Perfil Profissional',
       content:
-          'Profissional com foco em resultados, organização e melhoria contínua.',
+          'Atuação colaborativa em equipe, com foco na otimização dos processos e na eficiência da execução das rotinas. Capacidade de analisar o contexto de forma ampla, organizando atividades e responsabilidades diárias de maneira estratégica e alinhada aos objetivos da empresa. Comprometimento com o aprimoramento contínuo, buscando constante atualização frente a normas, boas práticas e mudanças de cenário, visando evolução profissional e melhoria dos resultados.',
     );
   }
 }
@@ -526,7 +537,8 @@ class FormacaoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BaseScreen(
       title: 'Formação Acadêmica',
-      content: '• Graduação em ...\n• Cursos técnicos e especializações.',
+      content:
+          '• Ensino Médio completo\n• Graduação em Análise e Desenvolvimentos de Sistemas em andamento, via EAD.',
     );
   }
 }
@@ -539,7 +551,7 @@ class ExperienciaScreen extends StatelessWidget {
     return const BaseScreen(
       title: 'Experiência Profissional',
       content:
-          '• Empresa X – Cargo – Período\n• Principais atividades e resultados.',
+          'Atuação na área de panificação desde os 15 anos de idade, com experiência consolidada ao longo dos anos e registro CLT a partir de 2009, desenvolvendo competências técnicas, operacionais e de organização de produção.\n• PADARIA REGIANE:\nPeríodo: 02/02/2009 a 02/06/2010\nCargo: Padeiro\nRotina: Produção de massas pão francês e suas variedades, massas doces e confeitaria básica.\n•BOCA VIÇOSA:\nPeríodo: 05/08/2010 a 30/06/2012\nCargo: Padeiro\nRotina: Produção de massas pão francês e suas variedades, massas doces, massas folhadas, massas caseiras com receita própria, confeitaria fina.\n•PIZZARIA PAULISTANA:\nPeríodo: 14/02/2014 a 17/08/2014 e 18/02/2015 a 02/08/2015\nCargo: Pizzaiolo\nRotina: Produção de massas, recheios, montagem, forneamento, organização do setor, auxílio em pedidos e estocagem.\n•GULA MIX:\nPeríodo: 04/01/2016 a 15/03/2017\nCargo: Pizzaiolo\nRotina: Produção de massas, recheios, montagem, forneamento, organização do setor, auxílio em pedidos e estocagem.\n•MARQESPAN/TRIGO ARTE E CIA:\nPeríodo: 19/02/2018 - em aberto.\nCargo: Técnico Panificação 2\nRotina: Treinamento da equipe em relação aos produtos congelados, auxílio na produção, controle de estoque e pedidos, manutenção de limpeza dos equipamentos, organização e precificação do PDV, estratégias de vendas com base em relatórios e rotina programada.',
     );
   }
 }
@@ -557,18 +569,6 @@ class CompetenciasScreen extends StatelessWidget {
   }
 }
 
-class CursosScreen extends StatelessWidget {
-  const CursosScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const BaseScreen(
-      title: 'Cursos & Certificações',
-      content: '• Curso A\n• Curso B\n• Certificação C',
-    );
-  }
-}
-
 class ContatoScreen extends StatelessWidget {
   const ContatoScreen({super.key});
 
@@ -576,7 +576,7 @@ class ContatoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BaseScreen(
       title: 'Contato',
-      content: 'Email: exemplo@email.com\nTelefone: (00) 00000-0000',
+      content: 'Email: adrianosptac@gmail.com\nTelefone: (32) 99855-5194',
     );
   }
 }
