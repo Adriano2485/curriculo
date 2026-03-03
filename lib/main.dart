@@ -117,7 +117,7 @@ class _SplashTwoState extends State<SplashTwo> {
 
   @override
   Widget build(BuildContext context) {
-    return const SplashLayout(text: 'Por Adriano Pereira');
+    return const SplashLayout(text: 'Por Isabelle Beatriz');
   }
 }
 
